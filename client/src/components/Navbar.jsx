@@ -4,12 +4,13 @@ import { CustomButton } from "./";
 import { logo, menu, search, thirdweb } from "../assets";
 import { navlinks } from "../constants";
 
+import { useStateContext } from "../context";
+
 export default function Navbar() {
   const navigate = useNavigate();
   const [isActive, setIsActive] = useState("dashboard");
   const [toggleDrawer, setToggleDrawer] = useState(false);
-
-  const address = "0xad";
+  const { connect, address } = useStateContext();
 
   return (
     <div className="flex md:flex-row flex-col-reverse justify-between mb-[35px] gap-6">
@@ -34,7 +35,7 @@ export default function Navbar() {
           styles={address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"}
           handleClick={() => {
             if (address) navigate("create-campaign");
-            else "connect()";
+            else connect();
           }}
         />
         <Link to="/profile">
@@ -105,8 +106,9 @@ export default function Navbar() {
               title={address ? "Create a campaign" : "Connect"}
               styles={address ? "bg-[#1dc071]" : "bg-[#8c6dfd]"}
               handleClick={() => {
-                if (address) navigate("create-campaign");
-                else "connect()";
+                 setToggleDrawer(false);
+                if (address){ navigate("create-campaign");}
+                else connect();
               }}
             />
           </div>
