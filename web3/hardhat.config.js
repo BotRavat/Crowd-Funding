@@ -4,7 +4,7 @@ require("@matterlabs/hardhat-zksync-solc");
 module.exports = {
   zksolc: {
     version: "1.3.9",
-    defaultNetwork:'georli',
+    defaultNetwork:'goerli',
     networks:{
       hardhat:{},
       goerli:{

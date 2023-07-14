@@ -11,7 +11,7 @@ const StateContext = createContext();
 
 export const StateContextProvider = ({ children }) => {
   const { contract } = useContract(
-    "0x6eB08da4f77A593365c2f98DBc6E1ae983eB4D45"
+    "0x9B43720CCff76c21cB9A2368da9D13015164dA39"
   );
 
   const { mutateAsync: createCampaign } = useContractWrite(
@@ -21,6 +21,10 @@ export const StateContextProvider = ({ children }) => {
 
   const address = useAddress();
   const connect = useMetamask();
+
+  // console.log(contract);
+  // console.log(address);
+  // console.log(connect);
 
   const publishCampaign = async (form) => {
     try {
@@ -39,6 +43,32 @@ export const StateContextProvider = ({ children }) => {
     }
   };
 
+  const getCampaigns = async () => {
+    const campaings = await contract.call("getCampaigns");
+    const parsedCampaings = campaings.map((campaign, id) => ({
+      owner: campaign.owner,
+      title: campaign.title,
+      description: campaign.description,
+      targetr: ethers.utils.formatEther(campaign.target.toString()),
+      deadline: campaign.deadline.toNumber(),
+      amountCollected: ethers.utils.formatEther(
+        campaign.amountCollected.toString()
+      ),
+      image: campaign.image,
+      pid: id,
+    }));
+
+    return parsedCampaings;
+  };
+
+
+  const getUserCampaigns=async()=>{
+    const allCampaigns=await getCampaigns();
+    const filteredCampaigns=allCampaigns.filter((campaign)=>campaign.owner===address);
+    return filteredCampaigns;
+
+  }
+
   return (
     <StateContext.Provider
       value={{
@@ -46,6 +76,8 @@ export const StateContextProvider = ({ children }) => {
         contract,
         connect,
         createCampaign: publishCampaign,
+        getCampaigns,
+        getUserCampaigns,
       }}
     >
       {children}
