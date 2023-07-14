@@ -10,8 +10,11 @@ import { ethers } from "ethers";
 const StateContext = createContext();
 
 export const StateContextProvider = ({ children }) => {
+  // const { contract } = useContract(
+  //   "0x9B43720CCff76c21cB9A2368da9D13015164dA39"
+  // );
   const { contract } = useContract(
-    "0x9B43720CCff76c21cB9A2368da9D13015164dA39"
+    "0x13B68D16327D0b5e3023b20e613987c44e8085a4"
   );
 
   const { mutateAsync: createCampaign } = useContractWrite(
@@ -72,7 +75,7 @@ export const StateContextProvider = ({ children }) => {
 
   
   const donate=async(pId,amount)=>{
-    const data=await contract.call('donateToCampaign',pId,address,{value:ethers.utils.parseEther(amount)});
+    const data=await contract.call('donateToCampaign',pId,{value:ethers.utils.parseEther(amount)});
     return data;
   }
 

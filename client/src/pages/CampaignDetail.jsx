@@ -153,11 +153,10 @@ export default function CampaignDetails() {
               />
               <div className="my-[20px] p-4 bg-[#13131a] rounded-[10px] ">
                 <h4 className=" font-epilogue font-semibold text-[14px] leading-[22px] text-white">
-                  Back it because you believe in it .
+                Give with your heart and be part of a collective movement for change.
                 </h4>
                 <p className="mt-[20px] font-epilogue font-normal leading-[22px] text-[#808191]">
-                  Support the project for no reward just because it speaks to
-                  you.
+                Your support will create a lasting legacy of compassion, strength, and restoration.
                 </p>
               </div>
               <CustomButton
