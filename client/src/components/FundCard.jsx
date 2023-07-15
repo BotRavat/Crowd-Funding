@@ -14,7 +14,7 @@ export default function FundCard({
   const remainingDays = daysLeft(deadline);
   return (
     <div
-      className="sm:w-[288px] w-full rounded-[15px] bg-[#1c1c24] cusror-pointer "
+      className="sm:w-[288px] w-[92vw] rounded-[15px] bg-[#1c1c24] cusror-pointer "
       onClick={handleClick}
     >
       <img

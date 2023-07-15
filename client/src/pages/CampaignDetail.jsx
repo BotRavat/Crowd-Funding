@@ -22,7 +22,7 @@ export default function CampaignDetails() {
   const fetchDonators = async () => {
     const data = await getDonations(state.pId);
     setDonators(data);
-    console.log(donators);
+    // console.log(donators);
   };
 
   useEffect(() => {
@@ -35,7 +35,9 @@ export default function CampaignDetails() {
     setIsLoading(false);
     navigate('/');
   };
-  console.log(state);
+  console.log(state,
+    state.target,
+    state.amountCollected);
   return (
     <div>
       {isLoading && <Loader />}
@@ -53,7 +55,7 @@ export default function CampaignDetails() {
               style={{
                 width: `${calculateBarPercentage(
                   state.target,
-                  state.amountColledcted
+                  state.amountCollected
                 )}%`,
                 maxWidth: "100%",
               }}

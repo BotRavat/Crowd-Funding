@@ -83,12 +83,16 @@ export const StateContextProvider = ({ children }) => {
     const donations=await contract.call('getDonators',pId);
     const numberOfDonations=donations[0].length;
     const parsedDonations=[];
-    for(let i=0;i<numberOfDonations;i++)
-    parsedDonations.push({
+    // for(let i=0;i<numberOfDonations;i++)/\
+    let i=0;
+    while(i<numberOfDonations)
+   { parsedDonations.push({
    donator:donations[0][i],
    donations:ethers.utils.formatEther(donations[1][i].toString())
     })
-
+   i++;
+  }
+ 
     return parsedDonations;
   }
 

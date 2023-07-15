@@ -56,6 +56,7 @@ export default function Navbar() {
             src={logo}
             alt="user"
             className="w-[60%] h-[60%] object-contain"
+            onClick={()=>navigate('/')}
           />
         </div>
         <img
